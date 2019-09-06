@@ -8,7 +8,7 @@ class UpcomingEvents extends React.Component {
         let data = {
             category: [102, 103]
         }
-        fetch(URL, {
+        fetch('http://localhost:3000/activities', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

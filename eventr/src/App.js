@@ -8,8 +8,11 @@ import Form from './components/Form'
 import './App.css';
 
 function App() {
+
   return (
     <div className="App">
+
+
       <Navbar />
       <UpcomingEvents />
       <PastEvents />
