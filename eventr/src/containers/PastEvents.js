@@ -6,8 +6,8 @@ class PastEvents extends React.Component {
     render(){
         return(
             <div>Past Events
-                <EventCard />
-                <EventCard />
+                {/* <EventCard />
+                <EventCard /> */}
             
             </div>
         )

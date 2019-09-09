@@ -8,7 +8,7 @@ class EventCard extends React.Component{
     render(){
         return(
             <div> Event Card
-
+                <p>{this.props.act.name}</p>
             </div>
         
         )
