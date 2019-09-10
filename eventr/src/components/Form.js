@@ -44,7 +44,7 @@ class Form extends React.Component {
 
     render(){
         return(
-            <form onSubmit={(e) => this.props.handleSubmit(e, this.returnState())}>
+            <form onSubmit={(e) => this.props.handleSubmit(this.returnState())}>
             <label>
               Event Name:
               <input onChange={this.handleChange} type="text" name="name"  />

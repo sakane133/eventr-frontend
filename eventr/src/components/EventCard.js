@@ -1,6 +1,7 @@
 import React from 'react'
 import Activities from './Activities'
 import Photos from './Photos'
+import { Link } from 'react-router-dom'
 
 
 class EventCard extends React.Component{
@@ -12,7 +13,7 @@ class EventCard extends React.Component{
              <br/>   
              <br/>   
 
-<div className='four wide column'>
+<div className='six wide column'>
 <div className="ui cards">
 <div className="card">
     <div className="content">
@@ -23,10 +24,13 @@ class EventCard extends React.Component{
                         <li>Budget:${party.num_people}</li><br/><br/>
                         
                         {party.activities.map(act => {
-                            return <p> {act.name}</p>
+                            return <p key={act.id}> {act.name} </p> 
                         })}
                     </ul>
-              
+                    <Link to={`/events/${party.id}`}>
+                        <button onClick={()=> this.props.onSelectedParty(party)}> View Event</button>
+                    </Link>
+                   
             </div>
         </div>
     </div>

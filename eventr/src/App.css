@@ -1,5 +1,7 @@
 
-
+body{
+  padding: 10px;
+}
 /* NAVBAR STYLING */
 
 
@@ -36,5 +38,9 @@
 
 .title{
   margin: 0 auto;
+}
+
+.selected{
+  height: 400px;
 }
 
