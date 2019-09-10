@@ -2,29 +2,24 @@ import React from 'react'
 import Activities from './Activities'
 
 class EventDetails extends React.Component {
-    constructor(){
-        super()
-        this.state = {
-            attending: []
-        }
-    }
 
-    addEvent = (activityObj) => {
-        if(!this.state.attending.includes(activityObj)){
-        this.setState({
-            attending: [...this.state.attending, activityObj]
+
+    attending = () => {
+        return this.props.event.activities.filter(act => {
+          return act.activity_events[0].selected 
         })
     }
-    }
-    removeEvent = (activityObj) => {
-        let newArr = this.state.attending.filter(act => act !== activityObj)
-        this.setState({
-            attending: newArr
+
+    suggested = () => {
+        return this.props.event.activities.filter(act =>{
+            return act.activity_events[0].selected === false
         })
     }
 
     render(){
+       
         const {name, event_type, budget, num_people, date, activities} = this.props.event
+        console.log(name)
         return(
             <div>
                <p>{name}</p> 
@@ -34,15 +29,15 @@ class EventDetails extends React.Component {
                <p>Attendees: {num_people}</p> 
             <div className='selected'>
                 <h2>Planning to attend:</h2>
-                <div className='ui grid'><div className='six column row'>{this.state.attending ? this.state.attending.map(act => {
-                return <Activities  act={act} key={act.id} attending={this.state.attending} removeEvent={this.removeEvent}/>
-            }) : null }</div></div>
+                <div className='ui grid'><div className='six column row'>
+        {this.attending().map(act => <Activities  act={act} key={act.id}  /> )}
+            </div></div>
             </div>
             <div>
                 <h2>Suggested Events:</h2>
-            <div className='ui grid'><div className='six column row'>{activities.map(act => {
-                return <Activities addEvent={this.addEvent} act={act} key={act.id} attending={this.state.attending}/>
-            })}</div></div>
+            <div className='ui grid'><div className='six column row'>
+                 {this.suggested().map(act => <Activities  act={act} key={act.id}  /> )}
+            </div></div>
             </div>
             </div>
          

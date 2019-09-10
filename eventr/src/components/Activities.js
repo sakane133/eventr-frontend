@@ -1,6 +1,7 @@
 import React from 'react'
 
 const Activities = (props) => {
+
     const {name, image, link} = props.act
     return(
     <div className='column'>
@@ -17,8 +18,8 @@ const Activities = (props) => {
             <i className="user icon"></i>
              More Info
             </a>
-            {props.attending.includes(props.act)? <button onClick={() => props.removeEvent(props.act)}>Remove Activity</button> : 
-            <button onClick={() => props.addEvent(props.act)}>Add Activity</button> }
+            {
+            <button onClick={() => props.addEvent(props.act, props.event)}>Add Activity</button> }
         </div>
 </div>
     </div>

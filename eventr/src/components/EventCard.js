@@ -1,5 +1,4 @@
 import React from 'react'
-import Activities from './Activities'
 import Photos from './Photos'
 import { Link } from 'react-router-dom'
 

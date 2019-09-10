@@ -16,23 +16,48 @@ class App extends React.Component{
     this.state = {
       user_data: {
         events: []
-      }
-    
-  }
-  }
+      },
+      suggested: [],
+      selected: []
+  }}
 
 componentDidMount() {
-  let id = 1
+  let id = 7
   fetch(`http://localhost:3000/users/${id}`)
   .then(resp => resp.json())
   .then(data => {
+    console.log(data)
     this.setState({
       user_data: data
     })
   })
 }
 
+addEvent = (activityObj, eventObj) => {
+  let question = activityObj.activity_events[0].selected ? false : true
+  let data = {
+      selected: question
+  }
+  fetch(`http://localhost:3000/activity_events/${activityObj.activity_events[0].id}`,  {
+      method: "PATCH",
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+  })
+  .then(res => res.json())
+  .then((data) => {
+   let stateCopy = {...this.state.user_data}
+   let singleEvent = stateCopy.events.find(e => e === eventObj)
+   let singleAct = singleEvent.activities.find(a => a === activityObj)
+   singleAct.activity_events.selected = question
 
+   this.setState({
+     user_data: stateCopy
+   })
+
+   debugger
+})}
 
 handleSubmit = (party) => {
   let data = party
@@ -73,7 +98,7 @@ render(){
       <Route exact path='/events/:id' render={(props)=> { 
         let eventId = parseInt(props.match.params.id)
         let eventObj = user_data.events.find(e=> e.id === eventId)
-        return eventObj ? <EventDetails event={eventObj}/> :  <Home /> 
+        return eventObj ? <EventDetails event={eventObj} addEvent={this.addEvent} /> :  <Home /> 
       }}/>
       </Switch>
   
