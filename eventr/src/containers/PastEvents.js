@@ -5,11 +5,17 @@ class PastEvents extends React.Component {
 
     render(){
         return(
-            <div>Past Events
-                {/* <EventCard />
-                <EventCard /> */}
-            
-            </div>
+            <div>
+            <h2 className='title'> Your Past Events</h2>
+    <div className='ui grid'>
+        
+        {this.props.events.map(party =>
+     {
+
+         return <EventCard party={party} key={party.id}/>          
+      } )}
+    </div>
+    </div>
         )
     }
 }

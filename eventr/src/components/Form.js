@@ -5,7 +5,7 @@ class Form extends React.Component {
     constructor(){
         super()
         this.state = {
-            user_id: 7,
+            user_id: 1,
             name: '',
             event_type: '',
             date: '',

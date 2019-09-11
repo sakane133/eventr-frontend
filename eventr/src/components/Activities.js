@@ -1,9 +1,12 @@
 import React from 'react'
 
-const Activities = (props) => {
+class Activities extends React.Component{
 
-    const {name, image, link} = props.act
+    render(){
+
+        const {name, image, link, activity_events} = this.props.act
     return(
+
     <div className='column'>
         <div className="ui card">
             <div className="image">
@@ -19,13 +22,17 @@ const Activities = (props) => {
              More Info
             </a>
             {
-            <button onClick={() => props.addEvent(props.act, props.event)}>Add Activity</button> }
+            <button onClick={() => this.props.moveEvent(this.props.act, this.props.event)}>{activity_events[0].selected ? 'Delete Event' : 'Add Event' }</button> 
+            }
         </div>
 </div>
     </div>
 
        
     )
+
+    }
+    
 }
 
 export default Activities 
