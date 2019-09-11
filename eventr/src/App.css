@@ -48,3 +48,11 @@ body{
   position: absolute;
   right: 10px;
 }
+.image {
+height: 200px;
+width: 200px;
+}
+.pic{
+  max-width: 95%;
+  max-height: 90%;
+}

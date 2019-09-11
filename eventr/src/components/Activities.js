@@ -10,7 +10,7 @@ class Activities extends React.Component{
     <div className='column'>
         <div className="ui card">
             <div className="image">
-                <img src={image}/>
+                <img className="pic" src={image}/>
             </div>
             <div className="content">
                 <a className="header">{name}</a>

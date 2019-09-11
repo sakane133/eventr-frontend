@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Route, Switch} from 'react-router-dom'
+import {Route, Switch, Redirect, withRouter} from 'react-router-dom'
 import Navbar from './components/Navbar'
 import UpcomingEvents from './containers/UpcomingEvents'
 import PastEvents from './containers/PastEvents'
@@ -10,6 +10,7 @@ import './components/EventDetails'
 import './App.css';
 import EventDetails from './components/EventDetails';
 import { faObjectGroup } from '@fortawesome/free-solid-svg-icons';
+import Login from './components/Login'
 
 class App extends React.Component{
   constructor(){
@@ -21,16 +22,6 @@ class App extends React.Component{
       }
   }}
 
-componentDidMount() {
-  let id = 1
-  fetch(`http://localhost:3000/users/${id}`)
-  .then(resp => resp.json())
-  .then(data => {
-    this.setState({
-      user_data: data
-    })
-  })
-}
 
 moveEvent = (activityObj, eventObj) => {
   let question = activityObj.activity_events[0].selected ? false : true
@@ -57,6 +48,7 @@ moveEvent = (activityObj, eventObj) => {
   })
 }
 
+
 handleDelete = (party) => {
   fetch(`http://localhost:3000/events/${party.id}`,{
     method: 'DELETE'
@@ -74,7 +66,8 @@ handleDelete = (party) => {
 }
 
 
-handleSubmit = (party) => {
+handleSubmit = (e, party) => {
+  e.preventDefault()
   let data = party
 
 fetch('http://localhost:3000/events', {
@@ -86,7 +79,7 @@ fetch('http://localhost:3000/events', {
     body: JSON.stringify(data)
 })
 .then(res => res.json())
-
+.then(console.log)
 
 }
 
@@ -95,6 +88,15 @@ onSelectedParty = (selectedParty) => {
     event: selectedParty
   })
 }
+
+
+updateUser = (user) => {
+  this.setState({
+    user_data: user,
+    loading: false
+  })
+}
+
 
 generateNew = (arr, event) => {
   let data = [arr,event]
@@ -125,26 +127,48 @@ render(){
   const {user_data} = this.state
   let todaysDate = new Date()
   let formatDate = todaysDate.getFullYear() + '0'+(todaysDate.getMonth() + 1)  +  todaysDate.getDate()
-  let pastEvents = user_data.events.filter(e=>  { return parseInt(e.date.split('-').join('')) < formatDate
-  })
+  // let pastEvents = user_data.events.filter(e=>  { return parseInt(e.date.split('-').join('')) < formatDate
+  // })
   let futureEvents = user_data.events.filter(e=>  { return parseInt(e.date.split('-').join('')) >= formatDate
 })
 
+debugger
   return (
     <div className="App">
 
 
-      <Navbar />
+      <Navbar logged_in={this.state.user} logout={this.logout}/>
       <Switch>
-      <Route exact path='/' component={Home}/>
-      <Route exact path='/upcoming' render={ routerProps =>   <UpcomingEvents {...routerProps} events={futureEvents} handleDelete={this.handleDelete} onSelectedParty={this.onSelectedParty} />}/>
-      <Route exact path='/past' render={ routerProps =>   <PastEvents {...routerProps} events={pastEvents}/>}/>
-      <Route exact path='/new' render={ (routerProps) =>   <Form {...routerProps} handleSubmit={this.handleSubmit}  />}/>
+      <Route exact path='/home' component={Home}/>
+      <Route exact path='/upcoming' render={ 
+         localStorage.getItem("token") ?
+        routerProps => <UpcomingEvents {...routerProps} events={futureEvents} handleDelete={this.handleDelete} onSelectedParty={this.onSelectedParty} />
+      :
+      <Login /> 
+      }
+      
+      />
+      <Route exact path='/past' render={ 
+        localStorage.getItem('token') ?
+        routerProps =>   <PastEvents {...routerProps} events={pastEvents}/>
+        : 
+        <Login />
+      }
+        />
+      <Route exact path='/new' render={ 
+        localStorage.getItem('token') ?
+        (routerProps) =>   <Form {...routerProps} handleSubmit={this.handleSubmit}  />
+        : 
+        <Login />
+      }
+        />
       <Route exact path='/events/:id' render={(props)=> { 
         let eventId = parseInt(props.match.params.id)
         let eventFound = this.state.event ? this.state.event : user_data.events.find(e=> e.id === eventId)
         return eventFound ? <EventDetails generateNew={this.generateNew} eventObj={this.state.eventObj} event={eventFound} moveEvent={this.moveEvent} user_data={user_data}  /> :  <Home /> 
-      }}/>
+      }}/> 
+  <Route exact path='/login' render = {() => this.state.user ? <Redirect to='/home' /> : <Login updateUser={this.updateUser}/> }/>
+    }
       </Switch>
   
 
@@ -155,4 +179,4 @@ render(){
 }
 }
 
-export default App;
+export default withRouter(App);

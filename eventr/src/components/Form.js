@@ -5,7 +5,7 @@ class Form extends React.Component {
     constructor(){
         super()
         this.state = {
-            user_id: 1,
+            user_id: 7,
             name: '',
             event_type: '',
             date: '',
@@ -44,7 +44,7 @@ class Form extends React.Component {
 
     render(){
         return(
-            <form onSubmit={(e) => this.props.handleSubmit(this.returnState())}>
+            <form onSubmit={(e) => this.props.handleSubmit(e, this.returnState())}>
             <label>
               Event Name:
               <input onChange={this.handleChange} type="text" name="name"  />
