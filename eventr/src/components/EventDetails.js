@@ -8,6 +8,7 @@ class EventDetails extends React.Component {
    
 
     attending = () => {
+        
         return this.props.event.activities.filter(act => { 
           return act.activity_events[0].selected 
         })
@@ -40,7 +41,9 @@ class EventDetails extends React.Component {
             </div></div>
             </div>
             <div>
-                <h2>Suggested Events:</h2>
+                <h2>Suggested Events:  <button onClick={()=>this.props.generateNew(this.suggested(), this.props.event)}>Find new event options!</button></h2>
+               
+
             <div className='ui grid'><div className='six column row'>
                  {this.suggested().map(act => <Activities moveEvent={this.props.moveEvent} event={this.props.event} act={act} key={act.id}  /> )}
             </div></div>

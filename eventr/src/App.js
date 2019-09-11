@@ -9,6 +9,7 @@ import Home from './containers/Home'
 import './components/EventDetails'
 import './App.css';
 import EventDetails from './components/EventDetails';
+import { faObjectGroup } from '@fortawesome/free-solid-svg-icons';
 
 class App extends React.Component{
   constructor(){
@@ -52,28 +53,26 @@ moveEvent = (activityObj, eventObj) => {
     this.setState({
      user_data: stateCopy,
      event: eventObj
-  }   
-
-  )
- 
   })
-    
-
-
+  })
 }
 
+handleDelete = (party) => {
+  fetch(`http://localhost:3000/events/${party.id}`,{
+    method: 'DELETE'
+  }).then(resp => resp.json())
+  .then(data => {alert(data.message)
+    let events = this.state.user_data.events.filter(e=> e !== party)
+    this.setState({
+      user_data:{
+        ...this.state.user_data,
+        events: events
+      }
+    })
+  })
+ 
+}
 
-    // attending = () => {
-    //     return this.props.event.activities.filter(act => {
-    //       return act.activity_events[0].selected 
-    //     })
-    // }
-
-    // suggested = () => {
-    //     return this.props.event.activities.filter(act =>{
-    //         return act.activity_events[0].selected === false
-    //     })
-    // }
 
 handleSubmit = (party) => {
   let data = party
@@ -97,6 +96,31 @@ onSelectedParty = (selectedParty) => {
   })
 }
 
+generateNew = (arr, event) => {
+  let data = [arr,event]
+
+fetch('http://localhost:3000/generate_new', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'accepts': 'application.json'
+    },
+    body: JSON.stringify(data)
+})
+.then(res => res.json())
+.then( data => {
+  let stateCopy = {...this.state.user_data}
+  let singleEvent = stateCopy.events.find(e => e.id === event.id)
+  singleEvent.activities = data
+  this.setState({
+    user_data: stateCopy,
+    event: event
+  })
+
+})
+
+}
+
 render(){
   const {user_data} = this.state
   let todaysDate = new Date()
@@ -113,13 +137,13 @@ render(){
       <Navbar />
       <Switch>
       <Route exact path='/' component={Home}/>
-      <Route exact path='/upcoming' render={ routerProps =>   <UpcomingEvents {...routerProps} events={futureEvents} onSelectedParty={this.onSelectedParty} />}/>
+      <Route exact path='/upcoming' render={ routerProps =>   <UpcomingEvents {...routerProps} events={futureEvents} handleDelete={this.handleDelete} onSelectedParty={this.onSelectedParty} />}/>
       <Route exact path='/past' render={ routerProps =>   <PastEvents {...routerProps} events={pastEvents}/>}/>
       <Route exact path='/new' render={ (routerProps) =>   <Form {...routerProps} handleSubmit={this.handleSubmit}  />}/>
       <Route exact path='/events/:id' render={(props)=> { 
         let eventId = parseInt(props.match.params.id)
         let eventFound = this.state.event ? this.state.event : user_data.events.find(e=> e.id === eventId)
-        return eventFound ? <EventDetails eventObj={this.state.eventObj} event={eventFound} moveEvent={this.moveEvent} user_data={user_data}  /> :  <Home /> 
+        return eventFound ? <EventDetails generateNew={this.generateNew} eventObj={this.state.eventObj} event={eventFound} moveEvent={this.moveEvent} user_data={user_data}  /> :  <Home /> 
       }}/>
       </Switch>
   

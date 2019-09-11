@@ -44,3 +44,7 @@ body{
   height: 400px;
 }
 
+.icon-trash{
+  position: absolute;
+  right: 10px;
+}

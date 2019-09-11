@@ -13,7 +13,7 @@ class UpcomingEvents extends React.Component {
                 {this.props.events.map(party =>
              {
 
-                 return <EventCard onSelectedParty={() => this.props.onSelectedParty(party)} party={party} key={party.id}/>          
+                 return <EventCard onSelectedParty={() => this.props.onSelectedParty(party)} handleDelete={this.props.handleDelete} party={party} key={party.id}/>          
               } )}
             </div>
             </div>
