@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Route, Switch, Redirect} from 'react-router-dom'
+import {Route, Switch} from 'react-router-dom'
 import Navbar from './components/Navbar'
 import UpcomingEvents from './containers/UpcomingEvents'
 import PastEvents from './containers/PastEvents'
@@ -18,11 +18,12 @@ class App extends React.Component{
       user_data: {
         events: [],
         event:{}
-      }
+      },
+      formSubmit: false
   }}
 
 componentDidMount() {
-  let id = 15
+  let id = 16
   fetch(`http://localhost:3000/users/${id}`)
   .then(resp => resp.json())
   .then(data => {
@@ -70,7 +71,9 @@ handleDelete = (party) => {
       }
     })
   })
+ 
 }
+
 
 handleSubmit = (party) => {
   let data = party
@@ -84,6 +87,8 @@ fetch('http://localhost:3000/events', {
     body: JSON.stringify(data)
 })
 .then(res => res.json())
+alert("Event Added!!")
+
 }
 
 onSelectedParty = (selectedParty) => {
@@ -135,7 +140,9 @@ render(){
       <Route exact path='/' component={Home}/>
       <Route exact path='/upcoming' render={ routerProps =>   <UpcomingEvents {...routerProps} events={futureEvents} handleDelete={this.handleDelete} onSelectedParty={this.onSelectedParty} />}/>
       <Route exact path='/past' render={ routerProps =>   <PastEvents {...routerProps} events={pastEvents}/>}/>
-      <Route exact path='/new' render={ (routerProps) =>   <Form {...routerProps} handleSubmit={this.handleSubmit}  />}/>
+      <Route exact path='/new' render={ (props) =>{
+         return <Form handleSubmit={this.handleSubmit}  />  }}
+         />
       <Route exact path='/events/:id' render={(props)=> { 
         let eventId = parseInt(props.match.params.id)
         let eventFound = this.state.event ? this.state.event : user_data.events.find(e=> e.id === eventId)

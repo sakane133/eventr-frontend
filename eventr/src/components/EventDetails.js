@@ -30,15 +30,15 @@ class EventDetails extends React.Component {
         {console.log('attending is', this.attending())}
         <div className='event-info'>
         <h1 className="pname">{name}</h1> 
-               <h4>Event Type: {event_type}</h4> 
-               <h4>Date: {date}</h4> 
-               <h4>Budget: ${budget}</h4> 
-               <h4>Attendees: {num_people}</h4> 
+               <h4 className="det">Event Type: </h4> <p className="p">{event_type}</p>
+               <h4 className="det">Date: </h4> <p className="p">{date}</p>
+               <h4 className="det">Budget: </h4> <p className="p">${budget}</p>
+               <h4 className="det">Attendees: </h4> <p className="p">{num_people}</p>
                <br/>
         </div>
               
             <div className='selected'>
-                <h2>Planning to attend:</h2>
+                <h2>You have {this.attending().length} activities planned: </h2> 
                 <div className='ui grid'>
 
                     <div className='six column row'>
