@@ -29,11 +29,12 @@ class EventDetails extends React.Component {
             <div>
         {console.log('attending is', this.attending())}
         <div className='event-info'>
-        <p>{name}</p> 
-               <p>{event_type}</p> 
-               <p>Date: {date}</p> 
-               <p>Budget: ${budget}</p> 
-               <p>Attendees: {num_people}</p> 
+        <h1 className="pname">{name}</h1> 
+               <h4>Event Type: {event_type}</h4> 
+               <h4>Date: {date}</h4> 
+               <h4>Budget: ${budget}</h4> 
+               <h4>Attendees: {num_people}</h4> 
+               <br/>
         </div>
               
             <div className='selected'>

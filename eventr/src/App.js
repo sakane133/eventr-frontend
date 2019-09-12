@@ -22,7 +22,7 @@ class App extends React.Component{
   }}
 
 componentDidMount() {
-  let id = 1
+  let id = 7
   fetch(`http://localhost:3000/users/${id}`)
   .then(resp => resp.json())
   .then(data => {

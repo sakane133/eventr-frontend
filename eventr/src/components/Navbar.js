@@ -9,7 +9,7 @@ const Navbar = (props) => {
             <NavLink className='link' to='/upcoming' >Upcoming Events</NavLink>
             <NavLink className='link' to='/past'>Past Events</NavLink>
             <NavLink className='link' to='/new'>Create New Event</NavLink>
-            <li><a href="#logout">Logout</a></li>
+            {/* <li><a href="#logout">Logout</a></li> */}
         </ul>
     )
 }

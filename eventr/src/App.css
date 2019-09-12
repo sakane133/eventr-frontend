@@ -14,6 +14,7 @@ body{
   top: 0;
   width: 100%;
   font-size: 30px;
+  font-family: didact gothic;
 }
 
 .link, li {
@@ -28,10 +29,13 @@ body{
   text-decoration: none;
 }
 
+h1, h2, p, li, .meta, #pn {
+  font-family: didact gothic;
+}
 
 
 .active {
-  background-color: #6059ff;
+  background-color: pink;
 }
 
 .title{
@@ -93,5 +97,12 @@ display:flex;
 }
 
 .event-info{
-  margin-top:100px;
+  margin-top:50px;
+}
+
+.pname{
+  font-size: 40px;
+}
+.up{
+  margin-top: 50px;
 }

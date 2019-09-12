@@ -9,6 +9,7 @@ class EventCard extends React.Component{
 
     render(){
         const{party} = this.props
+       
         return(
             <div>
              <br/>   
@@ -20,16 +21,13 @@ class EventCard extends React.Component{
 
     <div className="content">
     <FontAwesomeIcon onClick={() => this.props.handleDelete(party)} className='icon-trash' icon={faTrash} />
-        <div className="header">{party.name}</div>
+        <h1 className="header" id="pn">{party.name}</h1>
             <div className="meta">{party.event_type}</div>
                     <ul>
-                   
-                        <li>Number of Attendees:{party.num_people}</li><br/>
-                        <li>Budget:${party.num_people}</li><br/><br/>
-                        
-                        {party.activities.map(act => {
-                            return <p key={act.id}> {act.name} </p> 
-                        })}
+                        <li>Date: {party.date}</li>
+                        <li>Number of Attendees: {party.num_people}</li><br/><br/>
+                        <li>Budget: ${party.num_people}</li><br/><br/>
+                    
                     </ul>
                     <Link to={`/events/${party.id}`}>
                         <button onClick={()=> this.props.onSelectedParty(party)}> View Event</button>
