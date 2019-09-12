@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Route, Switch} from 'react-router-dom'
+import {Route, Switch, Redirect} from 'react-router-dom'
 import Navbar from './components/Navbar'
 import UpcomingEvents from './containers/UpcomingEvents'
 import PastEvents from './containers/PastEvents'
@@ -22,7 +22,7 @@ class App extends React.Component{
   }}
 
 componentDidMount() {
-  let id = 7
+  let id = 15
   fetch(`http://localhost:3000/users/${id}`)
   .then(resp => resp.json())
   .then(data => {
@@ -70,9 +70,7 @@ handleDelete = (party) => {
       }
     })
   })
- 
 }
-
 
 handleSubmit = (party) => {
   let data = party
@@ -86,8 +84,6 @@ fetch('http://localhost:3000/events', {
     body: JSON.stringify(data)
 })
 .then(res => res.json())
-
-
 }
 
 onSelectedParty = (selectedParty) => {

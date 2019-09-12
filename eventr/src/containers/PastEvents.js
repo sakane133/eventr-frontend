@@ -1,5 +1,5 @@
 import React from 'react'
-import EventCard from '../components/EventCard'
+import PastEventCard from '../components/PastEventCard'
 
 class PastEvents extends React.Component {
 
@@ -7,12 +7,12 @@ class PastEvents extends React.Component {
         return(
             <div className='up'>
             <h2 className='title'> Your Past Events</h2>
-    <div className='ui grid'>
+    <div className='ui grid' id='grid'>
         
         {this.props.events.map(party =>
      {
 
-         return <EventCard party={party} key={party.id}/>          
+         return <PastEventCard party={party} key={party.id}/>          
       } )}
     </div>
     </div>

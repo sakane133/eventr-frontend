@@ -15,9 +15,11 @@ class Activities extends React.Component{
   
             </div>
         <div className="extra content">
-            <a href={link}>
-            <i className="user icon"></i>
-             More Info
+            <a clasName="info"href={link}>
+            <i className="info icon"></i>
+                More Info
+             <div></div>
+             <br/>
             </a>
             {
             <button onClick={() => this.props.moveEvent(this.props.act, this.props.event)}>{activity_events[0].selected ? 'Delete Event' : 'Add Event' }</button> 

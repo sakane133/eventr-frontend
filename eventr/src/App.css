@@ -35,7 +35,7 @@ h1, h2, p, li, .meta, #pn {
 
 
 .active {
-  background-color: pink;
+  background-color: lightcoral;
 }
 
 .title{
@@ -105,4 +105,16 @@ display:flex;
 }
 .up{
   margin-top: 50px;
+}
+#grid {
+  margin-left: 5rem;
+}
+.info {
+  font-weight: bold;
+  color: lightcoral;
+}
+
+ .ui.card>.extra a:not(.ui), .ui.cards>.card>.extra a:not(.ui) {
+  font-weight: bold;
+  color: black
 }

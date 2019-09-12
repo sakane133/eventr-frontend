@@ -8,7 +8,7 @@ class UpcomingEvents extends React.Component {
         return(
             <div className="up">
                     <h2 className='title'> Your Upcoming Events</h2>
-            <div className='ui grid'>
+            <div className='ui grid' id="grid">
                 
                 {this.props.events.map(party =>
              {
