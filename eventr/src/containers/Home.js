@@ -1,11 +1,22 @@
 import React from 'react'
 
-const Home = () => {
 
+const Home = () => {
+    const image = require('../images/party.svg')
     return(
+        <div className='home'>
+        <img className='party-img' src={image}/>
         <div>
-            <h2>Welcome Party People</h2>
+        <h1 className='title-home'>Eventr</h1>
+            <p className='tag'>Your Personal Party Assistant</p>
+            <a href='/new'class="button">Get Started</a>
         </div>
+        
+      </div>
+
+  
+
+        
     )
 }
 

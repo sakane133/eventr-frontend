@@ -10,10 +10,10 @@ body{
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
   /* position: fixed; */
   top: 0;
   width: 100%;
+  font-size: 30px;
 }
 
 .link, li {
@@ -22,18 +22,16 @@ body{
 
 .link , li a {
   display: block;
-  color: white;
+  color: Black;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
 }
 
-.link, li a:hover:not(.active) {
-  background-color: #111;
-}
+
 
 .active {
-  background-color: #4CAF50;
+  background-color: #6059ff;
 }
 
 .title{
@@ -47,4 +45,53 @@ body{
 .icon-trash{
   position: absolute;
   right: 10px;
+}
+
+body{
+  background-color:white;
+}
+
+.title-home{
+  text-align: center;
+  font-size:200px;
+}
+
+.home{
+  margin-top:200px;
+display:flex;
+ 
+
+}
+
+.tag{
+  font-size:20px;
+}
+
+.form{
+  position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 300px;
+    margin-top: -150px;
+    margin-left: -200px;
+  
+}
+.party-img{
+  width:50%
+}
+
+
+.image{
+  max-height:250px;
+  object-fit: cover;
+}
+
+.suggested{
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.event-info{
+  margin-top:100px;
 }
