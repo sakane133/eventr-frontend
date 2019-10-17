@@ -6,6 +6,8 @@ import UpcomingEvents from './containers/UpcomingEvents'
 import PastEvents from './containers/PastEvents'
 import Form from './components/Form'
 import Home from './containers/Home'
+import Login from './components/Login'
+import Signup from './components/Signup'
 import './components/EventDetails'
 import './App.css';
 import EventDetails from './components/EventDetails';
@@ -22,14 +24,14 @@ class App extends React.Component{
   }}
 
 componentDidMount() {
-  let id = 15
-  fetch(`http://localhost:3000/users/${id}`)
-  .then(resp => resp.json())
-  .then(data => {
-    this.setState({
-      user_data: data
-    })
-  })
+  // let id = 1
+  // fetch(`http://localhost:3000/users/${id}`)
+  // .then(resp => resp.json())
+  // .then(data => {
+  //   this.setState({
+  //     user_data: data
+  //   })
+  // })
 }
 
 moveEvent = (activityObj, eventObj) => {
@@ -133,6 +135,8 @@ render(){
       <Navbar />
       <Switch>
       <Route exact path='/' component={Home}/>
+      <Route exact path='/login' render={ routerProps =>   <Login {...routerProps}  />}/>
+      <Route exact path='/signup' render={ routerProps =>   <Signup {...routerProps}  />}/>
       <Route exact path='/upcoming' render={ routerProps =>   <UpcomingEvents {...routerProps} events={futureEvents} handleDelete={this.handleDelete} onSelectedParty={this.onSelectedParty} />}/>
       <Route exact path='/past' render={ routerProps =>   <PastEvents {...routerProps} events={pastEvents}/>}/>
       <Route exact path='/new' render={ (routerProps) =>   <Form {...routerProps} handleSubmit={this.handleSubmit}  />}/>
