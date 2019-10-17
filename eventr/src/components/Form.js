@@ -5,7 +5,11 @@ class Form extends React.Component {
     constructor(){
         super()
         this.state = {
+<<<<<<< HEAD
             user_id: 1,
+=======
+            user_id: 16,
+>>>>>>> 4d8fee6801b43bc1d84a7dd9044cb354d43a6793
             name: '',
             event_type: '',
             date: '',
@@ -46,7 +50,7 @@ class Form extends React.Component {
         return(
             <div className='form'>
             <h2>Create a new event!</h2>
-                 <form className='ui form' onSubmit={(e) => this.props.handleSubmit(this.returnState())}>
+                 <form className='ui form' onSubmit={(e) => this.props.handleSubmit(this.returnState())} action="/upcoming">
                     <div class='field'>   
                     <input onChange={this.handleChange} type="text" name="name" placeholder='Event Name'  />
                     </div>

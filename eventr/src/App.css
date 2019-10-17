@@ -13,7 +13,7 @@ body{
   /* position: fixed; */
   top: 0;
   width: 100%;
-  font-size: 30px;
+  font-size: 20px;
   font-family: didact gothic;
 }
 
@@ -29,7 +29,7 @@ body{
   text-decoration: none;
 }
 
-h1, h2, p, li, .meta, #pn {
+h1, h2, p, li, .meta, #pn, .p, .det {
   font-family: didact gothic;
 }
 
@@ -40,10 +40,6 @@ h1, h2, p, li, .meta, #pn {
 
 .title{
   margin: 0 auto;
-}
-
-.selected{
-  height: 400px;
 }
 
 .icon-trash{
@@ -109,7 +105,7 @@ display:flex;
 #grid {
   margin-left: 5rem;
 }
-.info {
+.info, .det {
   font-weight: bold;
   color: lightcoral;
 }
@@ -117,4 +113,7 @@ display:flex;
  .ui.card>.extra a:not(.ui), .ui.cards>.card>.extra a:not(.ui) {
   font-weight: bold;
   color: black
+}
+.p, .det{
+  font-size: 18px
 }

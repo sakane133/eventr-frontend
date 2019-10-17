@@ -26,7 +26,7 @@ class EventCard extends React.Component{
                     <ul>
                         <li>Date: {party.date}</li>
                         <li>Number of Attendees: {party.num_people}</li><br/><br/>
-                        <li>Budget: ${party.num_people}</li><br/><br/>
+                        <li>Budget: ${party.budget}</li><br/><br/>
                     
                     </ul>
                     <Link to={`/events/${party.id}`}>
